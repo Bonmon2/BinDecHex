@@ -21,7 +21,7 @@ def _valtypecheck(_numtype):
 
 def _inputtedcorrectvaltypecheck(var):
     if isinstance(var, int):
-            return False
+        return True
     elif isinstance(var, str):
         for x in range(len(var)):
             if var[x] in _alphabet:
