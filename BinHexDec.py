@@ -19,7 +19,7 @@ def _valtypecheck(_numtype):
     else:
         raise ValueError("Unknown type idetifier")
 
-def _inputtedcorrectvaltypecheck(var):
+def _inputtednonnumvaltypecheck(var):
     if isinstance(var, int):
         return True
     elif isinstance(var, str):
@@ -30,28 +30,42 @@ def _inputtedcorrectvaltypecheck(var):
     elif isinstance(var, float):
         raise ValueError("Nums cannot accept float values as they are often hard to implement into other bases")
     else:
-        return True
+        return False
 
 class Nums():
     def __init__(self, NumVal, NumType):
         
-        if isinstance(NumVal, int):
+        if not(isinstance(NumVal, str)):
             NumVal = str(NumVal)
+        
+        _temporarynumval = ""
+        if NumVal[0] == "-":
+            for x in range(len(NumVal) - 1):
+                _temporarynumval = _temporarynumval + NumVal[x + 1]
+            pnMultiplier = -1
+            NumVal = _temporarynumval
+        else:
+            pnMultiplier = 1
 
         self.ValType = _valtypecheck(NumType)
-        self.DecVal = self._toDec(NumVal)
+        self.DecVal = self._toDec(NumVal) * pnMultiplier
 
 
     def __add__(self, var2):
-        if _inputtedcorrectvaltypecheck(var2):
+        if _inputtednonnumvaltypecheck(var2):
             _sumval = self.DecVal + int(var2)
         else:
             _sumval = self.DecVal + var2.DecVal
         return _sumval
 
     def __sub__(self, var2):
-        _subval = self.DecVal - var2.DecVal
+        if _inputtednonnumvaltypecheck(var2):
+            _subval = self.DecVal - int(var2)
+        else:
+            _subval = self.DecVal - var2.DecVal
         return _subval
+
+    
     
     def __str__(self):
         return str(self.DecVal)
