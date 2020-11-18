@@ -19,6 +19,19 @@ def _valtypecheck(_numtype):
     else:
         raise ValueError("Unknown type idetifier")
 
+def _inputtedcorrectvaltypecheck(var):
+    if isinstance(var, int):
+            return False
+    elif isinstance(var, str):
+        for x in range(len(var)):
+            if var[x] in _alphabet:
+                raise TypeError("You can't add a letter to a number, if this letter " + var[x] + " was meant to to represent a value please use the class so that the base can be identified")
+        return True
+    elif isinstance(var, float):
+        raise ValueError("Nums cannot accept float values as they are often hard to implement into other bases")
+    else:
+        return True
+
 class Nums():
     def __init__(self, NumVal, NumType):
         
@@ -30,15 +43,8 @@ class Nums():
 
 
     def __add__(self, var2):
-        if isinstance(var2, int):
-            _sumval = self.DecVal + var2
-        elif isinstance(var2, str):
-            for x in range(len(var2)):
-                if var2[x] in _alphabet:
-                    raise TypeError("You can't add a letter to a number, if this letter " + var2[x] + " was meant to to represent a value please use the class so that the base can be identified")
+        if _inputtedcorrectvaltypecheck(var2):
             _sumval = self.DecVal + int(var2)
-        elif isinstance(var2, float):
-            raise ValueError("Nums cannot accept float values as they are often hard to implement into other bases")
         else:
             _sumval = self.DecVal + var2.DecVal
         return _sumval
