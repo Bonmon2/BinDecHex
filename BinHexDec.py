@@ -115,6 +115,7 @@ class Nums():
         return str(self.DecVal)
 
 
+
     def ToDec(self):
         return self.DecVal
 
