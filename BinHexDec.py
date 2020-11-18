@@ -58,6 +58,14 @@ class Nums():
             _sumval = self.DecVal + var2.DecVal
         return _sumval
 
+    def __radd__(self, var2):
+        if _inputtednonnumvaltypecheck(var2):
+            _sumval = self.DecVal + int(var2)
+        else:
+            _sumval = self.DecVal + var2.DecVal
+        return _sumval
+
+
     def __sub__(self, var2):
         if _inputtednonnumvaltypecheck(var2):
             _subval = self.DecVal - int(var2)
@@ -65,8 +73,44 @@ class Nums():
             _subval = self.DecVal - var2.DecVal
         return _subval
 
+    def __rsub__(self, var2):
+        if _inputtednonnumvaltypecheck(var2):
+            _subval = int(var2) - self.DecVal
+        else:
+            _subval = var2.DecVal - self.DecVal
+        return _subval
+
+
+    def __mul__(self, var2):
+        if _inputtednonnumvaltypecheck(var2):
+            _subval = self.DecVal * int(var2)
+        else:
+            _subval = self.DecVal * var2.DecVal
+        return _subval
+
+    def __rmul__(self, var2):
+        if _inputtednonnumvaltypecheck(var2):
+            _subval = self.DecVal * int(var2)
+        else:
+            _subval = self.DecVal * var2.DecVal
+        return _subval
+
     
-    
+    def __div__(self, var2):
+        if _inputtednonnumvaltypecheck(var2):
+            _subval = self.DecVal/ int(var2)
+        else:
+            _subval = self.DecVal / var2.DecVal
+        return _subval
+
+    def __rdiv__(self, var2):
+        if _inputtednonnumvaltypecheck(var2):
+            _subval = int(var2) / self.DecVal
+        else:
+            _subval = var2.DecVal / self.DecVal
+        return _subval
+
+
     def __str__(self):
         return str(self.DecVal)
 
