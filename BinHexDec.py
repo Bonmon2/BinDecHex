@@ -95,6 +95,7 @@ class Nums():
             _subval = self.DecVal * var2.DecVal
         return _subval
 
+
     
     def __div__(self, var2):
         if _inputtednonnumvaltypecheck(var2):
